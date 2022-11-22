@@ -1,0 +1,28 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: Entering directory 'c:/dev/Advanced/c/annew/dippydro'
+make.exe -C dippydro
+ 
+make.exe[1]: Entering directory 'c:/dev/Advanced/c/annew/dippydro/dippydro'
+clang -D BUILD_DLL -m64 -std=c99 -Wall -Isrc -I../ext/glad/include -I../ext/glfw/include -c src/core/application.c -o src/core/application.o
+ 
+clang -D BUILD_DLL -m64 -std=c99 -Wall -Isrc -I../ext/glad/include -I../ext/glfw/include -c src/core/log.c -o src/core/log.o
+ 
+clang -D BUILD_DLL -m64 -std=c99 -Wall -Isrc -I../ext/glad/include -I../ext/glfw/include -c src/gfx/window.c -o src/gfx/window.o
+ 
+clang -D BUILD_DLL -m64 -std=c99 -Wall -Isrc -I../ext/glad/include -I../ext/glfw/include -c src/gfx/imgui_renderer.c -o src/gfx/imgui_renderer.o
+clang -D BUILD_DLL -m64 -std=c99 -Wall -Isrc -I../ext/glad/include -I../ext/glfw/include -shared -o ../bin/dippydro.dll src/core/application.o src/core/log.o src/gfx/window.o src/gfx/imgui_renderer.o ../ext/glfw/lib/libglfw3dll.a ../bin/glad.o -lopengl32
+ 
+mv src/core/application.o src/core/log.o src/gfx/window.o src/gfx/imgui_renderer.o ../bin/
+make.exe[1]: Leaving directory 'c:/dev/Advanced/c/annew/dippydro/dippydro'
+ 
+make.exe -C editor
+ 
+make.exe[1]: Entering directory 'c:/dev/Advanced/c/annew/dippydro/editor'
+clang -m64 -std=c99 -Wall -I../dippydro/src -I../ext/glad/include -I../ext/glfw/include -c src/app.c -o src/app.o
+clang -m64 -std=c99 -Wall -I../dippydro/src -I../ext/glad/include -I../ext/glfw/include -o ../bin/editor.exe src/app.o ../ext/glfw/lib/libglfw3dll.a ../bin/glad.o ../bin/dippydro.lib -lopengl32
+ 
+mv src/app.o ../bin/
+make.exe[1]: Leaving directory 'c:/dev/Advanced/c/annew/dippydro/editor'
+ 
+make.exe: Leaving directory 'c:/dev/Advanced/c/annew/dippydro'
+ 
